@@ -1,0 +1,23 @@
+global:
+  trace:
+    verbose: true
+
+multiplexer:
+  collectors:
+    - name: tap_in
+      dnstap:
+        listen-ip: 0.0.0.0
+        listen-port: 6000
+      transforms:
+        user-privacy:
+            anonymize-ip: true
+            minimaze-qname: true
+
+  loggers:
+    - name: console
+      stdout:
+        mode: text
+
+  routes:
+    - from: [tap_in]
+      to: [console]

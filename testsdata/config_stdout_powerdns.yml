@@ -1,0 +1,19 @@
+global:
+  trace:
+    verbose: true
+
+multiplexer:
+  collectors:
+    - name: pdns
+      powerdns:
+        listen-ip: 0.0.0.0
+        listen-port: 6001
+
+  loggers:
+    - name: console
+      stdout:
+        mode: text
+
+  routes:
+    - from: [pdns]
+      to: [console]

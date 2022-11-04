@@ -1,0 +1,25 @@
+global:
+  trace:
+    verbose: true
+
+multiplexer:
+  collectors:
+    - name: tap_in
+      dnstap:
+        listen-ip: 0.0.0.0
+        listen-port: 6000
+
+  loggers:
+    - name: console
+      stdout:
+        mode: text
+
+    - name: loki_out
+      lokiclient:
+        server-url: "http://loki:3100/loki/api/v1/push"
+        job-name: "dnscollector"
+        text-format: "localtime identity qr queryip family protocol qname qtype rcode"
+
+  routes:
+    - from: [tap_in]
+      to: [console, loki_out]

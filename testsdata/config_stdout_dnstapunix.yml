@@ -1,0 +1,18 @@
+global:
+  trace:
+    verbose: true
+
+multiplexer:
+  collectors:
+    - name: tap
+      dnstap:
+        sock-path: /tmp/dnstap.sock
+
+  loggers:
+    - name: console
+      stdout:
+        mode: text
+
+  routes:
+    - from: [tap]
+      to: [console]

@@ -1,0 +1,236 @@
+openapi: 3.0.2
+info:
+  title: Swagger for dnscollector tool
+  version: 0.13.0
+  description: This is a swagger for the API of the dnscollector.
+  contact:
+    email: d.machard@gmail.com
+  license:
+    name: MIT
+    url: 'https://github.com/dmachard/go-dnscollector/blob/main/LICENSE'
+  x-logo:
+    url: ''
+servers:
+  - url: 'http://localhost:8080/'
+paths:
+  /metrics:
+    get:
+      responses:
+        '200':
+          description: Metrics in prometheus format
+          content:
+            text/plain:
+              schema:
+                type: string
+      summary: Get metrics
+  /reset:
+    delete:
+      parameters:
+        - in: query
+          name: stream
+          schema:
+            type: string
+          description: stream name
+      responses:
+        '200':
+          description: Reset metrics
+          content:
+            text/plain:
+              schema:
+                type: string
+      summary: Reset metrics
+  /top/requester:
+    get:
+      parameters:
+        - in: query
+          name: stream
+          schema:
+            type: string
+          description: stream name
+      responses:
+        '200':
+          description: Top source ip requesters
+          content:
+            text/plain:
+              schema:
+                type: string
+      summary: Top source ip requesters
+  /top/requester/suspicious:
+    get:
+      parameters:
+        - in: query
+          name: stream
+          schema:
+            type: string
+          description: stream name
+      responses:
+        '200':
+          description: Top suspicious requesters ip list
+          content:
+            text/plain:
+              schema:
+                type: string
+      summary: Top suspicious requesters ip list  
+  /top/tld:
+    get:
+      parameters:
+        - in: query
+          name: stream
+          schema:
+            type: string
+          description: stream name
+      responses:
+        '200':
+          description: Top first level domains list
+          content:
+            text/plain:
+              schema:
+                type: string
+      summary: Top first level domains list
+  /top/fqdn:
+    get:
+      parameters:
+        - in: query
+          name: stream
+          schema:
+            type: string
+          description: stream name
+      responses:
+        '200':
+          description: Top domains list
+          content:
+            text/plain:
+              schema:
+                type: string
+      summary: Top domains list
+  /top/fqdn/nxd:
+    get:
+      parameters:
+        - in: query
+          name: stream
+          schema:
+            type: string
+          description: stream name
+      responses:
+        '200':
+          description: Top NX domains list
+          content:
+            text/plain:
+              schema:
+                type: string
+      summary: Top NX domains list
+  /top/fqdn/slow:
+    get:
+      parameters:
+        - in: query
+          name: stream
+          schema:
+            type: string
+          description: stream name
+      responses:
+        '200':
+          description: Top Slow domains list
+          content:
+            text/plain:
+              schema:
+                type: string
+      summary: Top Slow domains list
+  /top/fqdn/suspicious:
+    get:
+      parameters:
+        - in: query
+          name: stream
+          schema:
+            type: string
+          description: stream name
+      responses:
+        '200':
+          description: Top suspicious domains list
+          content:
+            text/plain:
+              schema:
+                type: string
+      summary: Top suspicious domains list         
+  /top/as:
+    get:
+      parameters:
+        - in: query
+          name: stream
+          schema:
+            type: string
+          description: stream name
+      responses:
+        '200':
+          description: Top Autonomous System list
+          content:
+            text/plain:
+              schema:
+                type: string
+      summary: Top Autonomous System list
+  /dump/requester:
+    get:
+      parameters:
+        - in: query
+          name: stream
+          schema:
+            type: string
+          description: stream name
+      responses:
+        '200':
+          description: Return full list of requesters
+          content:
+            text/plain:
+              schema:
+                type: string
+      summary: Return full list of requesters 
+  /dump/fqdn:
+    get:
+      parameters:
+        - in: query
+          name: stream
+          schema:
+            type: string
+          description: stream name
+      responses:
+        '200':
+          description: Return full list of domains
+          content:
+            text/plain:
+              schema:
+                type: string
+      summary: Return full list of domains
+  /dump/tld:
+    get:
+      parameters:
+        - in: query
+          name: stream
+          schema:
+            type: string
+          description: stream name
+      responses:
+        '200':
+          description: Return full list of top level domains
+          content:
+            text/plain:
+              schema:
+                type: string
+      summary: Return full list of top level domains
+  /dump/as:
+    get:
+      parameters:
+        - in: query
+          name: stream
+          schema:
+            type: string
+          description: stream name
+      responses:
+        '200':
+          description: Return full list of Autonomous System
+          content:
+            text/plain:
+              schema:
+                type: string
+      summary: Return full list of Autonomous System
+security: []
+externalDocs:
+  url: 'https://github.com/dmachard/go-dnscollector'
